@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../css/style.css">
-        <link rel="stylesheet" href="css/curves.css">
+        <!-- <link rel="stylesheet" href="css/curves.css"> -->
         <title>Ben's Site</title>        
     </head>
-    <body>
+    <body onload="main()">
     <div class="wrapper">    
         <div class='grid'>
             <!--- title --->
@@ -21,8 +21,16 @@
             <!--- content --->
             <div class="content">
                 <h2 align='center'>1.2 Bezier curves. </h2>
-                <p>Explanation.</p>
-                <p>Applet: move control points and t in [0,1] DeCasteljau.</p>
+                <p><i>Explanation Missing.</i></p>
+                <p>Move control points.</p><canvas id="webgl" width="300" height="300"> </canvas>
+                <script src="../../lib/webgl-utils.js"></script>
+                <script src="../../lib/webgl-debug.js"></script>
+                <script src="../../lib/cuon-utils.js"></script>
+                <script src="js/gl_bezier.js"></script>
+                <div class="slidecontainer" align="center">
+                    <p>Move the slider to find a point on the curve</p>
+                    <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+                </div>
             </div>
             <!--- footer --->
             <div class="footer">
