@@ -1,21 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Ben's Site</title>
-  </head>
-
-  <body onload="main()">
-      <h1> Welcome to Ben's Site </h1>
-      <p> <a href="./PAGE1/page1.html">Click here to see a rotating L in WebGL</a> </p>
-    <!--
-      <canvas id="webgl" width="400" height="400">
-    Please use a browser that supports "canvas"
-    </canvas> -->
-    <script src="./lib/webgl-utils.js"></script>
-    <script src="./lib/webgl-debug.js"></script>
-    <script src="./lib/cuon-utils.js"></script>
-    <script src="./lib/cuon-matrix.js"></script>
-    <script src="index.js"></script>
-  </body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/index.css">
+        <title>Ben's Site</title>        
+    </head>
+    <body>
+    <div class="wrapper">    
+        <div class='grid'>
+            <!--- title --->
+            <div class="title">
+                <div class='logo'><img src='img/blue_oct.png' alt='octree logo'> </div>
+                <div class='title-text'><h1 align='middle'>Manufacturing Shape</h1>
+                    <p align='center'>Dr. Benjamin Cross</p></div>
+                <div class='logo'><img src='img/blue_oct.png' alt='octree logo'> </div>
+            </div>
+            <!--- navigation menu --->
+            <div class="nav">
+            <ul>
+                <li><a href='#'>Home</a></li>
+                <li><a href='pages/projects/projects.html'>Projects</a></li>
+                <li><a href='pages/applets/applets.html'>Applets</a></li>
+                <li><a href='pages/pubs/pubs.html'>Publications</a></li>
+                <li><a href='pages/bio/bio.html'>Biography</a></li>
+            </ul>
+            </div>
+            <!--- content --->
+            <div class="content">
+                <div class="content-text">
+                    <h2 align='center'>! -- Website under construction -- ! </h2>
+                    <p>In the meantime click here for showcase content.</p><br>
+                    <p>'What the website will be about' [<a href='pages/curves/curves0.html'>START</a>].</p>
+                    <p>'Help to navigate: follow number scheme'</p>
+                </div>
+                <div class="content-img"><img src="img/blue_oct.png" alt="manufacturing shape"></div>
+            </div>
+            <!--- projects --->
+            <div class="projects">
+                <div class='project1'>
+                    <a href='pages/curves/curves0.html'>1.0 Curve Design</a>
+                </div>
+                <div class='project2'>
+                    <a href='pages/motion/motion0.html'>2.0 Motion Design</a>
+                </div>
+                <div class='project3'>
+                    <a href='pages/CNC/CNC0.html'>3.0 CNC Machining</a>
+                </div>
+                <div class='project4'>
+                    <a href='pages/projects/projects.html'>Other Projects</a>
+                </div>
+            </div>
+            <!--- content2 --->
+            <div class="content2">
+                <br>
+                <p> 'Other content: click others'</p>
+                <br>
+            </div>
+            <!--- footer --->
+            <div class="footer">
+                <ul>
+                    <li><a href='#'>Home</a></li>
+                <li><a href='#'>Projects</a></li>
+                <li><a href='#'>Applets</a></li>
+                <li><a href='#'>Publications</a></li>
+                <li><a href='#'>Biography</a></li>
+                </ul>
+            </div>
+            <div class="socket">Written in HTML, CSS, JavaScript, WebGL and GLSL.</div>
+        </div>
+    </div>
+    </body>
 </html>

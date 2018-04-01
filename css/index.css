@@ -1,0 +1,19 @@
+
+.projects {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: #77C9D4;
+    text-align: center;
+}
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    
+}
+.content-img img{
+    width: 50%;
+}
+.content2 {
+    background: #77C9D4;
+}
