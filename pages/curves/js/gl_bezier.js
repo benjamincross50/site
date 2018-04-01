@@ -42,9 +42,9 @@ function main(){
     canvas.onmousedown=function (ev) { mousedown=true; evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();};
     canvas.onmousemove=function (ev) { if(mousedown===true) { evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();}};
     canvas.onmouseup=function (ev) { mousedown=false; };
-    canvas.touchstart=function (ev) { mousedown=true; evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();};
-    canvas.touchmove=function (ev) { if(mousedown===true) { evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();}};
-    canvas.touchend=function (ev) { mousedown=false; };
+    canvas.touchstart=function (ev) { if(ev.target==canvas){ev.preventDefault();} mousedown=true; evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();};
+    canvas.touchmove=function (ev) { if(ev.target==canvas){ev.preventDefault();} if(mousedown===true) { evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();}};
+    canvas.touchend=function (ev) { if(ev.target==canvas){ev.preventDefault();} mousedown=false; };
     
     
     var tick = function(){
