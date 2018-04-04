@@ -56,9 +56,9 @@ function main(){
     canvas.onmousedown=function (ev) { mousedown=true; evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();};
     canvas.onmousemove=function (ev) { if(mousedown===true) { evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();}};
     canvas.onmouseup=function (ev) { mousedown=false; };
-    canvas.touchstart=function (ev) { mousedown=true; evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect(); if(ev.target==canvas){ev.preventDefault();}};
-    canvas.touchmove=function (ev) { if(mousedown===true) { evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();}if(ev.target==canvas){ev.preventDefault();}};
-    canvas.touchend=function (ev) { mousedown=false; if(ev.target==canvas){ev.preventDefault();}};
+    canvas.touchstart=function (ev) { ev.preventDefault(); mousedown=true; evX=ev.touches[0].clientX; evY=ev.touches[0].clientY; rect= ev.target.getBoundingClientRect(); };
+    canvas.touchmove=function (ev) { ev.preventDefault(); if(mousedown===true) { evX=ev.touches[0].clientX; evY=ev.touches[0].clientY; rect= ev.target.getBoundingClientRect();}};
+    canvas.touchend=function (ev) { ev.preventDefault(); mousedown=false; };
     
     
     var tick = function(){
