@@ -191,7 +191,7 @@ function draw(gl,canvas){
     gl.clearColor(0.0,0.0,0.0,1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.POINTS,0,3);
-    gl.lineWidth(15);
+    gl.lineWidth(2.0);
     gl.drawArrays(gl.LINES,0,2);
     
     
