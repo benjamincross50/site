@@ -28,8 +28,8 @@ function main(){
     }
      
     
-    gl.clearColor(0.0,0.0,0.0,1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    //gl.clearColor(0.0,0.0,0.0,1.0);
+    //gl.clear(gl.COLOR_BUFFER_BIT);
     
     var vertexBuffer=gl.createBuffer();
     if(!vertexBuffer){
@@ -42,9 +42,9 @@ function main(){
     canvas.onmousedown=function (ev) { mousedown=true; evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();};
     canvas.onmousemove=function (ev) { if(mousedown===true) { evX=ev.clientX; evY=ev.clientY; rect= ev.target.getBoundingClientRect();}};
     canvas.onmouseup=function (ev) { mousedown=false; };
-    canvas.touchstart=function (ev) { if(ev.target==canvas){ev.preventDefault();} mousedown=true; evX=ev.touches[0].clientX; evY=ev.touches[0].clientY; rect= ev.target.getBoundingClientRect();};
-    canvas.touchmove=function (ev) { if(ev.target==canvas){ev.preventDefault();} if(mousedown===true) { evX=ev.touches[0].clientX; evY=ev.touches[0].clientY; rect= ev.target.getBoundingClientRect();}};
-    canvas.touchend=function (ev) { if(ev.target==canvas){ev.preventDefault();} mousedown=false; };
+    canvas.addEventListener("touchstart", function (ev) { ev.preventDefault(); mousedown=true; evX=ev.touches[0].clientX; evY=ev.touches[0].clientY; rect= ev.target.getBoundingClientRect(); });
+    canvas.addEventListener("touchmove", function (ev) { ev.preventDefault(); if(mousedown===true) { evX=ev.touches[0].clientX; evY=ev.touches[0].clientY; rect= ev.target.getBoundingClientRect();}});
+    canvas.addEventListener("touchend", function (ev) {  ev.preventDefault(); mousedown=false; });
     
     
     var tick = function(){
@@ -66,7 +66,8 @@ var g_points=[];
 var mousedown=false;
 var evX=0,evY=0;
 var rect ;
-
+const res=20;
+var curve = new Float32Array(2*res+2);
 
 
 
@@ -93,7 +94,7 @@ function draw(gl,canvas){
             vertices[5]=y;
         }
         
-        console.log('x: '+x+', y: '+y);  
+        //console.log('x: '+x+', y: '+y);  
     }
     
     
@@ -117,11 +118,27 @@ function draw(gl,canvas){
     gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(a_Position);
     
-    gl.clearColor(0.0,0.0,0.0,1.0);
+    gl.clearColor(1.0,1.0,1.0,1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.POINTS,0,4);
     gl.lineWidth(2);
     gl.drawArrays(gl.LINE_STRIP,0,3);
     
+    fill_curve();
+    // Write data into the buffer object
+    gl.bufferData(gl.ARRAY_BUFFER, curve, gl.DYNAMIC_DRAW);
     
+    // assign the buffer object to a_Position variable
+    gl.lineWidth(1);
+    gl.drawArrays(gl.LINE_STRIP,0,res+1);//*/
+    
+    
+}
+
+function fill_curve(){
+    for(var i=0;i<=res;i++){
+        var t = i/res;
+        curve[2*i]=vertices[0]*(1-t)*(1-t)+vertices[2]*t*(1-t)*2+vertices[4]*t*t;
+        curve[2*i+1]=vertices[1]*(1-t)*(1-t)+vertices[3]*t*(1-t)*2+vertices[5]*t*t;
+    }
 }

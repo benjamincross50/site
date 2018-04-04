@@ -41,8 +41,8 @@ function main(){
     //    return;
     //}
     
-    gl.clearColor(0.0,0.0,0.0,1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    // gl.clearColor(0.0,0.0,0.0,1.0);
+    //gl.clear(gl.COLOR_BUFFER_BIT);
     
     var vertexBuffer=gl.createBuffer();
     if(!vertexBuffer){
@@ -136,7 +136,7 @@ function click(ev,gl,canvas){
     gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(a_Position);
     
-    gl.clearColor(0.0,0.0,0.0,1.0);
+    gl.clearColor(1.0,1.0,1.0,1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.POINTS,0,2);
     gl.lineWidth(2);
@@ -164,7 +164,7 @@ function draw(gl,canvas){
             vertices[3]=y;
         }
         
-        console.log('x: '+x+', y: '+y);  
+        //console.log('x: '+x+', y: '+y);  
     }
     
     
@@ -188,7 +188,7 @@ function draw(gl,canvas){
     gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(a_Position);
     
-    gl.clearColor(0.0,0.0,0.0,1.0);
+    gl.clearColor(1.0,1.0,1.0,1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.POINTS,0,3);
     gl.lineWidth(2.0);
