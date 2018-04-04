@@ -68,7 +68,8 @@ function main(){
     
     canvas.addEventListener("touchstart", function (ev) {ev.preventDefault(); debugtext.innerHTML="touchstart at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+".";});
     //canvas.addEventListener("touchmove", function (ev) {ev.preventDefault(); debugtext.innerHTML="touchmove at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
-    canvas.addEventListener("touchend touchcancel", function (ev) {debugtext.innerHTML="touchend at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
+    canvas.addEventListener("touchend", function (ev) {debugtext.innerHTML="touchend at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
+    canvas.addEventListener("touchend", function (ev) {debugtext.innerHTML="touchcancel at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
     
     var tick = function(){
         draw(gl,canvas);
