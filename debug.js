@@ -62,13 +62,14 @@ function main(){
     //canvas.touchend=function (ev) { if(ev.target==canvas){ev.preventDefault();} mousedown=false; };
     
     var debugtext = document.getElementById("debugtext");
+    var touches=0;
     
     canvas.addEventListener("mousedown", function (ev) {debugtext.innerHTML="mousedown at ("+ev.clientX+","+ev.clientY+").";});
     canvas.addEventListener("mouseup", function (ev) {debugtext.innerHTML="mouseup at ("+ev.clientX+","+ev.clientY+").";});
     
-    canvas.addEventListener("touchstart", function (ev) {ev.preventDefault(); debugtext.innerHTML="touchstart at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
+    canvas.addEventListener("touchstart", function (ev) {ev.preventDefault(); debugtext.innerHTML="touchstart at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+"). Touches = "+ev.touches.length;});
     canvas.addEventListener("touchmove", function (ev) {ev.preventDefault(); debugtext.innerHTML="touchmove at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
-    canvas.addEventListener("touchend", function (ev) {ev.preventDefault(); debugtext.innerHTML="touchend at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
+    canvas.addEventListener("touchend touchcancel", function (ev) {ev.preventDefault(); debugtext.innerHTML="touchend at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
     
     var tick = function(){
         draw(gl,canvas);
