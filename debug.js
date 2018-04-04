@@ -66,8 +66,8 @@ function main(){
     canvas.addEventListener("mousedown", function (ev) {debugtext.innerHTML="mousedown at ("+ev.clientX+","+ev.clientY+").";});
     canvas.addEventListener("mouseup", function (ev) {debugtext.innerHTML="mouseup at ("+ev.clientX+","+ev.clientY+").";});
     
-    canvas.addEventListener("touchstart", function (ev) {debugtext.innerHTML="touchstart at ("+ev.clientX+","+ev.clientY+").";});
-    //canvas.addEventListener("touchmove", function (ev) {debugtext.innerHTML="touchmove";});
+    canvas.addEventListener("touchstart", function (ev) {debugtext.innerHTML="touchstart at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
+    canvas.addEventListener("touchmove", function (ev) {debugtext.innerHTML="touchmove at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
     canvas.addEventListener("touchend", function (ev) {debugtext.innerHTML="touchend at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
     
     var tick = function(){
