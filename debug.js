@@ -66,7 +66,8 @@ function main(){
     canvas.addEventListener("mousedown", function (ev) {debugtext.innerHTML="mousedown at ("+ev.clientX+","+ev.clientY+").";});
     canvas.addEventListener("mouseup", function (ev) {debugtext.innerHTML="mouseup at ("+ev.clientX+","+ev.clientY+").";});
     
-    canvas.addEventListener("touchstart", function (ev) {debugtext.innerHTML="new touchstart at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+".";});
+    //canvas.addEventListener("touchstart", function (ev) {debugtext.innerHTML="new touchstart at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+".";});
+    canvas.touchstart=function (ev) { ev.preventDefault(); debugtext.innerHTML="line touchstart at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+"."; };
     //canvas.addEventListener("touchmove", function (ev) {ev.preventDefault(); debugtext.innerHTML="touchmove at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
     canvas.addEventListener("touchend", function (ev) {debugtext.innerHTML="touchend at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
     canvas.addEventListener("touchcancel", function (ev) {debugtext.innerHTML="touchcancel at ("+ev.touches[0].clientX+","+ev.touches[0].clientY+").";});
