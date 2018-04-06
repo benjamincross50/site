@@ -3,16 +3,22 @@
 // Vertex Shader Program
 var VSHADER_SOURCE =
         'attribute vec4 a_Position;\n' +
+        'attribute vec4 a_Color;\n' +
+        'varying vec4 v_Color;\n' +
         'void main() {\n' +
         ' gl_Position=a_Position;\n' +
         ' gl_PointSize = 10.0;\n' +
+        ' v_Color=a_Color;\n' +
         '}\n';
 
-// Fragment Shader Program
+// Fragment shader program
 var FSHADER_SOURCE =
-        'void main() {\n' +
-        ' gl_FragColor = vec4(1.0,0.0,0.0,1.0);\n' +
-        '}\n';
+  'precision mediump float;\n' + // Precision qualifier (See Chapter 6)
+  'varying vec4 v_Color;\n' +    // Receive the data from the vertex shader
+  'void main() {\n' +
+  '  gl_FragColor = v_Color;\n' +
+  '}\n';
+
 
 function main(){
     var canvas = document.getElementById('webgl');
@@ -60,14 +66,17 @@ function main(){
 }
 
 var vertices = new Float32Array ([
-       -0.5,-0.5, 0.0, 0.5,  0.5,-0.5, 0.0,0.0
+       -0.5,-0.5, 0.0,0.0,1.0,
+       0.0, 0.5,  0.0,0.0,1.0,
+       0.5,-0.5, 0.0,0.0,1.0,
+       0.0,0.0, 0.0,0.0,1.0
     ]);
 var g_points=[];
 var mousedown=false;
 var evX=0,evY=0;
 var rect ;
 const res=20;
-var curve = new Float32Array(2*res+2);
+var curve = new Float32Array(5*res+5);
 
 
 
@@ -79,19 +88,19 @@ function draw(gl,canvas){
         var y=(canvas.height/2.0-(evY-rect.top))/(canvas.height/2.0);
 
         var dist1=Math.abs(vertices[0]-x)+Math.abs(vertices[1]-y);
-        var dist2=Math.abs(vertices[2]-x)+Math.abs(vertices[3]-y);
-        var dist3=Math.abs(vertices[4]-x)+Math.abs(vertices[5]-y);
+        var dist2=Math.abs(vertices[5]-x)+Math.abs(vertices[6]-y);
+        var dist3=Math.abs(vertices[10]-x)+Math.abs(vertices[11]-y);
         if(dist1<0.2){
             vertices[0]=x;
             vertices[1]=y;
         } else if(dist2<0.2)
         {
-            vertices[2]=x;
-            vertices[3]=y;
+            vertices[5]=x;
+            vertices[6]=y;
         } else if(dist3<0.2)
         {
-            vertices[4]=x;
-            vertices[5]=y;
+            vertices[10]=x;
+            vertices[11]=y;
         }
         
         //console.log('x: '+x+', y: '+y);  
@@ -100,14 +109,15 @@ function draw(gl,canvas){
     
     var slider = document.getElementById("myRange");
     var t=slider.value/100.0;
-    vertices[6]=vertices[0]*(1-t)*(1-t)+vertices[2]*t*(1-t)*2+vertices[4]*t*t;
-    vertices[7]=vertices[1]*(1-t)*(1-t)+vertices[3]*t*(1-t)*2+vertices[5]*t*t;
+    vertices[15]=vertices[0]*(1-t)*(1-t)+vertices[5]*t*(1-t)*2+vertices[10]*t*t;
+    vertices[16]=vertices[1]*(1-t)*(1-t)+vertices[6]*t*(1-t)*2+vertices[11]*t*t;
     
     
     
     //mousedown=false;
     // Write data into the buffer object
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.DYNAMIC_DRAW);
+    var FSIZE=vertices.BYTES_PER_ELEMENT;
     
     var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
     if(a_Position<0){
@@ -115,8 +125,17 @@ function draw(gl,canvas){
         return;
     }
     // assign the buffer object to a_Position variable
-    gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, FSIZE*5, 0);
     gl.enableVertexAttribArray(a_Position);
+    
+    var a_Color = gl.getAttribLocation(gl.program, 'a_Color');
+    if(a_Color<0){
+        console.log('Failed to find a_Color');
+        return;
+    }
+    // assign the buffer object to a_Position variable
+    gl.vertexAttribPointer(a_Color, 3, gl.FLOAT, false, FSIZE*5, FSIZE*2);
+    gl.enableVertexAttribArray(a_Color);
     
     gl.clearColor(1.0,1.0,1.0,1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -138,7 +157,8 @@ function draw(gl,canvas){
 function fill_curve(){
     for(var i=0;i<=res;i++){
         var t = i/res;
-        curve[2*i]=vertices[0]*(1-t)*(1-t)+vertices[2]*t*(1-t)*2+vertices[4]*t*t;
-        curve[2*i+1]=vertices[1]*(1-t)*(1-t)+vertices[3]*t*(1-t)*2+vertices[5]*t*t;
+        curve[5*i]=vertices[0]*(1-t)*(1-t)+vertices[5]*t*(1-t)*2+vertices[10]*t*t;
+        curve[5*i+1]=vertices[1]*(1-t)*(1-t)+vertices[6]*t*(1-t)*2+vertices[11]*t*t;
+        curve[5*i+2]=0.0; curve[5*i+3]=0.0; curve[5*i+4]=1.0;
     }
 }

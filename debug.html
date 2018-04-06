@@ -2,21 +2,53 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <!-- <link rel="stylesheet" href="css/curves.css">  -->
         <title>Ben's Site</title>        
     </head>
-    <body  onload="main()">
-        <h1>DEBUG PAGE</h1>
-        <h3> version 1.5</h3>
-        
-                <canvas id="webgl" width="500" height="500"> </canvas>
+    <body onload="main()">
+    <div class="wrapper">    
+        <div class='grid'>
+            <!--- title --->
+            <div class="title">
+                <script src='common/title.js'></script>
+            </div>
+            <!--- navigation menu --->
+            <div class="nav">
+                <script src='common/nav.js'></script>            
+            </div>
+            <!--- content --->
+            <div class="content">
+                <h2 align='center'>1.1 Drawing A Line. </h2>
+                <p>A line can be defined by its end points. Move end points in the applet to design a line.</p>
+                <canvas id="webgl" width="300" height="300"> </canvas>
                 <script src="lib/webgl-utils.js"></script>
                 <script src="lib/webgl-debug.js"></script>
                 <script src="lib/cuon-utils.js"></script>
                 <script src="debug.js"></script>
                 <div class="slidecontainer" align="center">
-                    <p>Move the slider to find a point on the line</p>
+                    <p>Move the slider to find points on the line.</p>
                     <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
-                    <p id="debugtext">No event triggered</p>
                 </div>
+                <button onclick="activateChallenge()">Activate Challenge</button>
+                <div id="challenge">
+                Design a connecting straight road. The background will turn from red to green when this has been
+                done correctly.
+                <a href='curves2.html'>Next (1.2)</a>
+                </div>
+                <br/>
+            </div>
+            <!--- footer --->
+            <div class="footer">
+                <ul>
+                    <li><a href='../../index.html'>Home</a></li>
+                    <li><a href='curves0.html'>Curve Design</a></li>
+                    <li><a href='curves0.html'>Previous (1.0)</a></li>
+                    <li><a href='curves2.html'>Next (1.2)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     </body>
 </html>

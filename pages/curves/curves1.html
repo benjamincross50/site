@@ -20,20 +20,25 @@
             </div>
             <!--- content --->
             <div class="content">
-                <h2 align='center'>1.1 Drawing A Line. </h2>
-                <p><i>Explanation missing.</i></p>
-                <p>Move the end points of the line.</p>
+                <h2 align='center'>1.1 Drawing A Line. </h2> <br/>
+                <p>A line is defined by its end points; move them in the applet below to design a line.
+                When ready: "Activate Challenge".</p><br/>
                 <canvas id="webgl" width="300" height="300"> </canvas>
                 <script src="../../lib/webgl-utils.js"></script>
                 <script src="../../lib/webgl-debug.js"></script>
                 <script src="../../lib/cuon-utils.js"></script>
                 <script src="js/gl_line.js"></script>
                 <div class="slidecontainer" align="center">
-                    <p>Move the slider to find a point on the line</p>
+                    <p>Move the slider to find points on the line.</p>
                     <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
                 </div>
+                <button onclick="activateChallenge()">Activate Challenge</button><br/>
+                <div id="challenge">
+                <br/> <p>Design a connecting straight road. The background will turn from red to green when this has been
+                    done correctly.</p><br/>
+                <!-- <a href='curves2.html'>Next (1.2)</a> -->
+                </div>
                 <br/>
-                <a href='curves2.html'>Next (1.2)</a>
             </div>
             <!--- footer --->
             <div class="footer">
